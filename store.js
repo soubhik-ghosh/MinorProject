@@ -74,6 +74,8 @@ const store = createStore(finalReducer , initialState , composeEnhancers());
 export default store;
 */
 
+/*
+
 import { combineReducers } from 'redux';
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers'; 
@@ -95,4 +97,20 @@ const composeEnhancers = composeWithDevTools(applyMiddleware(thunk));
 const store = createStore(finalReducer, initialState, composeEnhancers);
 
 export default store;
+*/
+
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import { composeWithDevTools } from '@redux-devtools/extension'; // Correct import
+import rootReducer from './reducers'; // Combine all reducers here
+
+const middleware = [thunk];
+
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(...middleware))
+);
+
+export default store;
+
 
